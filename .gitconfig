@@ -1,0 +1,27 @@
+[user]
+	name = Svetlin
+	email = svetlimladenov@gmail.com
+[core]
+	longpaths = true
+[rerere]
+	enabled = true
+[alias]
+	a = add
+	b = branch
+	co = checkout
+	cob = checkout -b
+	f = fetch
+	pl = pull
+	st = status
+	c = commit
+	cm = commit -m
+	bl = branch --list
+	r = rebase
+	ra = rebase --abort
+	ri = rebase -i
+	rc = rebase --continue
+	l = log
+	ll = log --oneline
+	rename = branch -m 
+	undo = reset HEAD~1 --mixed
+	save = !git add -A && git commit -m 'SAVEPOINT' --no-verify
