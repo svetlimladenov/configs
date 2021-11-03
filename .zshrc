@@ -5,7 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-
 #
 # Executes commands at the start of an interactive session.
 #
@@ -26,9 +25,15 @@ fi
 # Initialize the nodenv
 eval "$(nodenv init -)"
 
+# Pyenv setup
+eval "$(pyenv init -)"
+
+# Renv setup
+eval "$(rbenv init - zsh)"
+
 # Aliases
 alias g="git"
-# alias cls="clear"
+alias c="clear"
 
 # Creates and moves to a new dir
 take () {
@@ -39,4 +44,4 @@ take () {
 # Turn off all beeps
 unsetopt BEEP
 # Turn off autocomplete beeps
-# unsetopt LIST_BEEP%
+# unsetopt LIST_BEEP
