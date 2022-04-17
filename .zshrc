@@ -22,18 +22,31 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+
 # Initialize the nodenv
 eval "$(nodenv init -)"
 
 # Pyenv setup
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 
 # Renv setup
-eval "$(rbenv init - zsh)"
+# eval "$(rbenv init - zsh)"
 
 # Aliases
 alias g="git"
 alias c="clear"
+alias yr="yarn"
+alias k="kubectl"
+
+# Attaches tmux to the last session; creates a new session if none exists.
+alias t='tmux attach || tmux new-session'
+
+alias lights_on='curl --location --request POST "zigbee.st6.io:1880/lights/on" --header "Content-Type: application/json" --data-raw "[\"sw-31#left\"]"'
+alias lights_off='curl --location --request POST "zigbee.st6.io:1880/lights/off" --header "Content-Type: application/json" --data-raw "[\"sw-31#left\"]"'
+
+alias mac='cd ~/Code/macstadium/monorepo-dev/packages'
+alias vi='nvim'
+alias vim='nvim'
 
 # Creates and moves to a new dir
 take () {
@@ -44,4 +57,17 @@ take () {
 # Turn off all beeps
 unsetopt BEEP
 # Turn off autocomplete beeps
-# unsetopt LIST_BEEP
+unsetopt LIST_BEEP
+
+bindkey -v
+
+export PATH="/Users/svetlinmladenov/go/bin:$PATH"
+
+export KUBE_EDITOR="/usr/local/bin/nvim"
+export EDITOR=nvim
+export VISUAL=$EDITOR
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+[[ kubectl ]] && source <(kubectl completion zsh)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
