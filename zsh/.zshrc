@@ -5,13 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -22,8 +15,10 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# https://github.com/wting/autojump
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 
-# Initialize the nodenv
+# Initialize the nodenv 
 eval "$(nodenv init -)"
 
 # Pyenv setup
@@ -41,10 +36,6 @@ alias k="kubectl"
 # Attaches tmux to the last session; creates a new session if none exists.
 alias t='tmux attach || tmux new-session'
 
-alias lights_on='curl --location --request POST "zigbee.st6.io:1880/lights/on" --header "Content-Type: application/json" --data-raw "[\"sw-31#left\"]"'
-alias lights_off='curl --location --request POST "zigbee.st6.io:1880/lights/off" --header "Content-Type: application/json" --data-raw "[\"sw-31#left\"]"'
-
-alias mac='cd ~/Code/macstadium/monorepo-dev/packages'
 alias vi='nvim'
 alias vim='nvim'
 
@@ -54,6 +45,8 @@ take () {
   cd "$1"
 }
 
+source "$HOME/Code/macstadium/.orka-tools.zsh"
+
 # Turn off all beeps
 unsetopt BEEP
 # Turn off autocomplete beeps
@@ -62,10 +55,11 @@ unsetopt LIST_BEEP
 bindkey -v
 
 export PATH="/Users/svetlinmladenov/go/bin:$PATH"
+export PATH="/Users/svetlinmladenov/.local/bin:$PATH"
 
-export KUBE_EDITOR="/usr/local/bin/nvim"
 export EDITOR=nvim
-export VISUAL=$EDITOR
+export VISUAL=vi
+export KUBE_EDITOR=$EDITOR
 
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
 [[ kubectl ]] && source <(kubectl completion zsh)

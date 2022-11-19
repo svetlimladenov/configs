@@ -1,8 +1,3 @@
-[user]
-	name = Svetlin
-	email = svetlimladenov@gmail.com
-[core]
-	longpaths = true
 [rerere]
 	enabled = true
 [alias]
@@ -11,6 +6,7 @@
 	co = checkout
 	cob = checkout -b
 	f = fetch
+	p = push
 	pl = pull
 	st = status
 	c = commit
@@ -25,3 +21,12 @@
 	rename = branch -m 
 	undo = reset HEAD~1 --mixed
 	save = !git add -A && git commit -m 'SAVEPOINT' --no-verify
+	branch-name = "!git rev-parse --abbrev-ref HEAD"
+	publish = "!git push -u origin $(git branch-name)"
+[user]
+	email = svetlimladenov@gmail.com
+	name = svetlimladenov
+[core]
+	editor = nvim
+[pull]
+	rebase = false
